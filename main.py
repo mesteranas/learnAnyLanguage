@@ -1,6 +1,7 @@
 import sys
 from custome_errors import *
 sys.excepthook = my_excepthook
+import winsound
 import random
 import gui
 import guiTools
@@ -56,10 +57,16 @@ class main (qt.QMainWindow):
                 if OK:
                     if w.lower()==wa[1].lower():
                         TU+=1
+                        winsound.PlaySound("data/sounds/1.wav",1)
+                    else:
+                        winsound.PlaySound("data/sounds/2.wav",1)
                     AU+=1
                 else:
                     break
             qt.QMessageBox.information(self,_("test result"),_("your mark is {} from {}".format(str(TU),str(AU))))
+            if TU==AU:
+                winsound.PlaySound("data/sounds/3.wav",1)
+
 App=qt.QApplication([])
 w=main()
 w.show()
